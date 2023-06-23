@@ -130,25 +130,35 @@ extern void U3CStartXRU3Ed__10_System_Collections_Generic_IEnumeratorU3CSystem_O
 extern void U3CStartXRU3Ed__10_System_Collections_IEnumerator_Reset_mD99AEFDB38CFAC11731CDB371647891816288600 (void);
 // 0x0000003D System.Object VrModeController/<StartXR>d__10::System.Collections.IEnumerator.get_Current()
 extern void U3CStartXRU3Ed__10_System_Collections_IEnumerator_get_Current_mD84D9ACDB0A04C619509BA51590975DB84C30B0F (void);
-// 0x0000003E System.Void GazeMove::Update()
+// 0x0000003E System.Void animationController::grab()
+extern void animationController_grab_mFF0A1FE79CADDF5906211C1476B11B733D4C82A0 (void);
+// 0x0000003F System.Void animationController::fix()
+extern void animationController_fix_m865B7159B893B1A35EBD8FC703ACF95620065548 (void);
+// 0x00000040 System.Void animationController::.ctor()
+extern void animationController__ctor_m038B5AE04819BB5AD5C514178553EBD6D56994A6 (void);
+// 0x00000041 System.Void GazeMove::Start()
+extern void GazeMove_Start_mE001A6DE9F11196B6057ACCFB589E931DDFDA3C6 (void);
+// 0x00000042 System.Void GazeMove::Update()
 extern void GazeMove_Update_m92C30C18849E5CDA03FC5ECDF20EDD1F8C9EFAB9 (void);
-// 0x0000003F System.Void GazeMove::.ctor()
+// 0x00000043 System.Int32 GazeMove::veri()
+extern void GazeMove_veri_m0F79C9BFDFBEC0F130F45C842BDFE4B9CA3CA11A (void);
+// 0x00000044 System.Void GazeMove::.ctor()
 extern void GazeMove__ctor_mFAE20B9C263E335B1BEC6B1B88B51088F70358FE (void);
-// 0x00000040 System.Void ToysController::Start()
+// 0x00000045 System.Void ToysController::Start()
 extern void ToysController_Start_m8E97D893B0CA5B01C4F9D642E73388B3FD7435B3 (void);
-// 0x00000041 System.Void ToysController::SelectToy()
+// 0x00000046 System.Void ToysController::SelectToy()
 extern void ToysController_SelectToy_mA74D13B081B4E3AC37AAB134E60A2622F0C0C343 (void);
-// 0x00000042 System.Void ToysController::OnPointerEnter()
+// 0x00000047 System.Void ToysController::OnPointerEnter()
 extern void ToysController_OnPointerEnter_m42F9759FF33AC8CDA01F785DC10F101BC6845743 (void);
-// 0x00000043 System.Void ToysController::OnPointerExit()
+// 0x00000048 System.Void ToysController::OnPointerExit()
 extern void ToysController_OnPointerExit_m8C07876627AC7238D77F5984B0DC8212FF5D1C78 (void);
-// 0x00000044 System.Void ToysController::OnPointerClick()
+// 0x00000049 System.Void ToysController::OnPointerClick()
 extern void ToysController_OnPointerClick_mD71398A0CF231FB04A6C2B6C62D023B9BD396402 (void);
-// 0x00000045 System.Void ToysController::SetMaterial(System.Boolean)
+// 0x0000004A System.Void ToysController::SetMaterial(System.Boolean)
 extern void ToysController_SetMaterial_mEE7CEB9D86F8DE0BA3F02ABCCA29A71998233E44 (void);
-// 0x00000046 System.Void ToysController::.ctor()
+// 0x0000004B System.Void ToysController::.ctor()
 extern void ToysController__ctor_m84AD44D88DD54F532922D255D0A0D6DA57B0BDAD (void);
-static Il2CppMethodPointer s_methodPointers[70] = 
+static Il2CppMethodPointer s_methodPointers[75] = 
 {
 	CameraPointerManager_Start_mD7AF198D08B9BF90DDF91F6CD878D6B8797BE31F,
 	CameraPointerManager_GazeSelection_mA039246BE96F5637EA7BD76848D007C19702D3A4,
@@ -211,7 +221,12 @@ static Il2CppMethodPointer s_methodPointers[70] =
 	U3CStartXRU3Ed__10_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_mD0B4CE8CBE980FD132B19F40FF2172502B1D0566,
 	U3CStartXRU3Ed__10_System_Collections_IEnumerator_Reset_mD99AEFDB38CFAC11731CDB371647891816288600,
 	U3CStartXRU3Ed__10_System_Collections_IEnumerator_get_Current_mD84D9ACDB0A04C619509BA51590975DB84C30B0F,
+	animationController_grab_mFF0A1FE79CADDF5906211C1476B11B733D4C82A0,
+	animationController_fix_m865B7159B893B1A35EBD8FC703ACF95620065548,
+	animationController__ctor_m038B5AE04819BB5AD5C514178553EBD6D56994A6,
+	GazeMove_Start_mE001A6DE9F11196B6057ACCFB589E931DDFDA3C6,
 	GazeMove_Update_m92C30C18849E5CDA03FC5ECDF20EDD1F8C9EFAB9,
+	GazeMove_veri_m0F79C9BFDFBEC0F130F45C842BDFE4B9CA3CA11A,
 	GazeMove__ctor_mFAE20B9C263E335B1BEC6B1B88B51088F70358FE,
 	ToysController_Start_m8E97D893B0CA5B01C4F9D642E73388B3FD7435B3,
 	ToysController_SelectToy_mA74D13B081B4E3AC37AAB134E60A2622F0C0C343,
@@ -221,84 +236,89 @@ static Il2CppMethodPointer s_methodPointers[70] =
 	ToysController_SetMaterial_mEE7CEB9D86F8DE0BA3F02ABCCA29A71998233E44,
 	ToysController__ctor_m84AD44D88DD54F532922D255D0A0D6DA57B0BDAD,
 };
-static const int32_t s_InvokerIndices[70] = 
+static const int32_t s_InvokerIndices[75] = 
 {
-	3249,
-	3249,
-	3249,
-	2727,
-	2676,
+	3250,
+	3250,
+	3250,
+	2728,
+	2677,
 	709,
-	3249,
-	3249,
-	3249,
-	3249,
-	3249,
-	3249,
-	3249,
-	3249,
-	2605,
-	3249,
-	3249,
-	3249,
-	2662,
-	2662,
-	3249,
-	3249,
-	3249,
-	2693,
-	3249,
-	3249,
-	2693,
-	3203,
-	3249,
-	3249,
-	3249,
-	3249,
-	2727,
-	2727,
+	3250,
+	3250,
+	3250,
+	3250,
+	3250,
+	3250,
+	3250,
+	3250,
+	2606,
+	3250,
+	3250,
+	3250,
+	2663,
+	2663,
+	3250,
+	3250,
+	3250,
+	2694,
+	3250,
+	3250,
+	2694,
+	3204,
+	3250,
+	3250,
+	3250,
+	3250,
+	2728,
+	2728,
 	709,
-	3249,
-	3249,
+	3250,
+	3250,
 	0,
 	0,
 	0,
 	0,
-	3249,
-	3249,
-	3249,
-	3249,
-	3249,
-	3110,
-	3110,
-	3249,
-	3249,
-	3249,
-	3249,
-	3167,
-	3249,
-	3249,
-	2644,
-	3249,
-	3110,
-	3167,
-	3249,
-	3167,
-	3249,
-	3249,
-	3249,
-	3249,
-	3249,
-	3249,
-	3249,
-	2605,
-	3249,
+	3250,
+	3250,
+	3250,
+	3250,
+	3250,
+	3111,
+	3111,
+	3250,
+	3250,
+	3250,
+	3250,
+	3168,
+	3250,
+	3250,
+	2645,
+	3250,
+	3111,
+	3168,
+	3250,
+	3168,
+	3250,
+	3250,
+	3250,
+	3250,
+	3250,
+	3148,
+	3250,
+	3250,
+	3250,
+	3250,
+	3250,
+	3250,
+	2606,
+	3250,
 };
 IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
 	"Assembly-CSharp.dll",
-	70,
+	75,
 	s_methodPointers,
 	0,
 	NULL,

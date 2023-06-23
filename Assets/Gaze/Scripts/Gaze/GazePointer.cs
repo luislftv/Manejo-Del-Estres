@@ -39,7 +39,7 @@ public class GazePointer : MonoBehaviour {
                 _gazedAtObject.SendMessage("OnPointerEnter", null, SendMessageOptions.DontRequireReceiver);
                 GazeManager.Instance.StartGazeSelection();
             }
-            if(hit.transform.CompareTag(interactableTag) || hit.transform.CompareTag("Container"))
+            if(hit.transform.CompareTag(interactableTag) || hit.transform.CompareTag("Container")||hit.transform.CompareTag("table"))
             {
                 //Activar puntero
                 //pointer.GetComponent<MeshRenderer>().enabled = true;
