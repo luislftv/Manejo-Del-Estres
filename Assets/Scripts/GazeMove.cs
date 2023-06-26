@@ -18,6 +18,7 @@ public class GazeMove : MonoBehaviour {
 
     private float timer;
     [SerializeField] private GazeManager gazeTime;
+    [SerializeField] private TimeController timeController;
     [SerializeField] private animationController anim;
     [SerializeField] private List<GameObject> parts;
      GameObject ant;
@@ -27,42 +28,30 @@ public class GazeMove : MonoBehaviour {
    }
 
    void Update()
-    {
-        if (Physics.Raycast(transform.position, transform.forward, out hit, maxDistance))
+    {   
+
+
+        if (selectedObject!=null)
         {
-            if (hit.collider.CompareTag("Interactable"))
+            if (selectedObject.CompareTag("inBox"))
             {
-
-                timer += Time.deltaTime;
-                
-                if (timer >= gazeTime.timeForSelection)
-                {
-                    anim.grab();
-                    
-                    selectedObject = hit.collider.gameObject;
-
-                   
-                }
-            }
-            else if (hit.collider.CompareTag("Container"))
-            {
-                timer += Time.deltaTime;
-                
-                if (timer >= gazeTime.timeForSelection&&selectedObject!=null)
-                {
-                    selectedObject.transform.position=new Vector3(Random.Range( hit.collider.gameObject.transform.position.x-1, hit.collider.gameObject.transform.position.x+1),hit.collider.gameObject.transform.position.y+3,hit.collider.gameObject.transform.position.z);
-                    selectedObject.tag="Untagged";
-                    if(!parts.Contains(selectedObject))
+                if(!parts.Contains(selectedObject))
                     {
                         parts.Add(selectedObject);
                     }
-                    selectedObject=null;
-                   
-                }
-                
-               
+                        selectedObject=null;
+
             }
-            else if (hit.collider.CompareTag("table"))
+        }
+        
+        if (Physics.Raycast(transform.position, transform.forward, out hit, maxDistance))
+        {
+            if(hit.collider.CompareTag("Interactable"))
+            {
+                selectedObject=hit.transform.gameObject;
+            }
+        
+            if (hit.collider.CompareTag("table"))
             {
                timer += Time.deltaTime;
                 if (timer >= gazeTime.timeForSelection)
