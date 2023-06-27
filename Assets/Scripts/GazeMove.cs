@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 public class GazeMove : MonoBehaviour {
 
@@ -21,52 +22,100 @@ public class GazeMove : MonoBehaviour {
     [SerializeField] private TimeController timeController;
     [SerializeField] private animationController anim;
     [SerializeField] private List<GameObject> parts;
-     GameObject ant;
+    [HideInInspector] public bool one;
+    [SerializeField] private int totalToys;
+    [SerializeField] TextMeshProUGUI toysTxt;
+    [SerializeField] private GameObject particulas;
+    [SerializeField] public GameObject panelTuto;
+    [HideInInspector] public bool yaEntro;
+    GameObject fullDog;
+    GameObject fullCrab;
+    
 
-   private void Start() {
-    ant = new GameObject();
-   }
+    GameObject ant;
+
+    private void Start() {
+        ant = new GameObject();
+        fullDog = GameObject.FindGameObjectWithTag("fullDog");
+        fullCrab = GameObject.FindGameObjectWithTag("fullCrab");
+        
+        
+    }
 
    void Update()
     {   
-
-
-        if (selectedObject!=null)
-        {
-            if (selectedObject.CompareTag("inBox"))
-            {
-                if(!parts.Contains(selectedObject))
-                    {
-                        parts.Add(selectedObject);
-                    }
-                        selectedObject=null;
-
-            }
-        }
         
         if (Physics.Raycast(transform.position, transform.forward, out hit, maxDistance))
         {
-            if(hit.collider.CompareTag("Interactable"))
-            {
-                selectedObject=hit.transform.gameObject;
+
+            select(hit);
+            
+            if (selectedObject!=null)
+            { timer = 0;
+                
+                
+                if (selectedObject.CompareTag("inBox"))
+                {
+                   // Debug.Log(selectedObject.gameObject.name);
+                    if (!parts.Contains(selectedObject))
+                    {
+                        parts.Add(selectedObject);
+                    }
+                    
+                    selectedObject = null;
+                }
+               
+                
             }
+            else 
+            {
+                select(hit);
+            }
+           
         
             if (hit.collider.CompareTag("table"))
             {
-               timer += Time.deltaTime;
-                if (timer >= gazeTime.timeForSelection)
-                {
-                    anim.fix();
-                   int ver = veri();
-                 Debug.Log(ver);
-                if (ver >= 5)
-                {
-                    Debug.Log("Bien hecho");
-                }
-                   
-                }
-                
+               
+                    
+                    timer += Time.deltaTime;
+                    if (timer >= gazeTime.timeForSelection)
+                    {
+                    int ver = veri();
+                    if (ver >= 5)
+                        {
+                            particulas.SetActive(true);
+                            anim.fix();
 
+                            Debug.Log("Bien hecho");
+                            
+                            totalToys++;
+                            toysTxt.text = "Juguetes: " + totalToys.ToString();
+                            toysTxt.enabled = true;
+                            
+
+                            switch (parts[0].layer)
+                                {
+                                    case 6:
+                                        StartCoroutine(toy(fullDog));
+                                        break;
+                                    case 7:
+                                        StartCoroutine(toy(fullCrab));
+                                        break;
+
+                                }
+                                foreach (var item in parts)
+                                {
+                                    item.SetActive(false);
+
+                                }
+
+                                parts.Clear();
+
+
+                        }
+
+                    }
+                
             }
            
         }
@@ -79,28 +128,54 @@ public class GazeMove : MonoBehaviour {
         
     }
 
+    IEnumerator toy(GameObject toy) 
+    {
+        yield return new WaitForSeconds(7f);
+        particulas.SetActive(false);
+        toy.transform.localScale = new Vector3(1, 1, 1);
+    }
+    void select(RaycastHit hit) 
+    {
+        if (hit.collider.CompareTag("Interactable"))
+        {
+
+            timer += Time.deltaTime;
+            if (timer >= gazeTime.timeForSelection)
+            {
+                selectedObject =  hit.transform.gameObject;
+            }
+            Debug.Log(selectedObject.name);
+        }
+        
+    }
     int veri()
     {
         int count=0;
-       
-        foreach (GameObject i in parts)
+
+        if (parts != null)
         {
-            if (parts.Count==0)
-            {   ant=i;
-                if (i.layer==ant.layer)
-                    {
-                        count++;
-                    }
-            }
-            else
+            foreach (GameObject i in parts)
             {
-                if (i.layer==ant.layer)
+                if (parts != null)
+                {
+                    if (parts.Count == 0)
                     {
-                        count++;
+                        ant = i;
+                        if (i.layer == ant.layer)
+                        {
+                            count++;
+                        }
                     }
-                ant=i;
+                    else
+                    {
+                        if (i.layer == ant.layer)
+                        {
+                            count++;
+                        }
+                        ant = i;
+                    }
+                }
             }
-            //count++;
             
         }
         return count;

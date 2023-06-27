@@ -24,7 +24,7 @@ public class CardboardSimulator : MonoBehaviour
             float mouseY = Input.GetAxis("Mouse Y") * verticalSpeed; 
             rotationY += mouseX;
             rotationX -= mouseY;
-            rotationX = Mathf.Clamp(rotationX, -45, 45);
+            rotationX = Mathf.Clamp(rotationX, -90, 90);
             cam.transform.eulerAngles = new Vector3(-rotationX, -rotationY, 0.0f);
         }
 #endif

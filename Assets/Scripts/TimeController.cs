@@ -20,11 +20,12 @@ public class TimeController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {  
+    {
         
         if(timeGrabBool)
         {   timeTxt.enabled=true;
-            timeGrab+=Time.deltaTime;
+
+            timeGrab +=Time.deltaTime;
             timeTxt.text=timeGrab.ToString("00");
             if(timeGrab>=timeLose)
             {
@@ -34,6 +35,12 @@ public class TimeController : MonoBehaviour
                 timeGrab=0;
             }
             
+        }
+        else
+        {
+            timeGrab = 0;
+            timeTxt.enabled = false;
+
         }
     }
     

@@ -8,6 +8,9 @@ TagManager:
   - Container
   - table
   - inBox
+  - fullDog
+  - fullCrab
+  - button
   layers:
   - Default
   - TransparentFX
@@ -16,7 +19,7 @@ TagManager:
   - Water
   - UI
   - dog
-  - 
+  - crab
   - 
   - 
   - 

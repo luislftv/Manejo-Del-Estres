@@ -12,6 +12,10 @@ public class anchor : MonoBehaviour
     private float timer;
     [SerializeField] private GazeManager gazeManager;
     [SerializeField] private TimeController timeController;
+    [SerializeField] private GazeMove one;
+    
+
+
 
     private void Update()
     {
@@ -26,10 +30,11 @@ public class anchor : MonoBehaviour
                
                 // Seleccionar el objeto
                 isSelected = true;
+               
                 OnObjectSelected();
             }
         }
-        if (isSelected)
+        if (isSelected&&!one.one)
         {
              //this.transform.LookAt(cameraTransform, Vector3.up);
             // Calcula la dirección desde el objeto actual hacia el objeto objetivo
@@ -44,7 +49,8 @@ public class anchor : MonoBehaviour
             // Aplica la rotación al objeto actual
             transform.rotation = rotation;
         }
-        if(!timeController.timeGrabBool&&timeController.left)
+        
+        if (!timeController.timeGrabBool&&timeController.left)
         {
             if(transform.CompareTag("Untagged"))
             {
@@ -60,7 +66,7 @@ public class anchor : MonoBehaviour
     }
     private void LateUpdate()
     {
-        if (isSelected)
+        if (isSelected && !one.one)
         {
             //this.transform.LookAt(cameraTransform);
             // Obtener la posición del centro de la cámara
@@ -72,6 +78,7 @@ public class anchor : MonoBehaviour
 
             // Mover el objeto en la dirección calculada
             transform.position += direction * followSpeed * Time.deltaTime;
+            
         }
         
     }
@@ -82,21 +89,41 @@ public class anchor : MonoBehaviour
         Debug.Log("Objeto seleccionado");
         Destroy(transform.gameObject.GetComponent<Rigidbody>());
         timeController.timeGrabBool=true;
-        transform.gameObject.tag="Untagged"; 
-       // SetMaterial(true);
+        transform.gameObject.tag="Untagged";
+        
     }
-     public void OnPointerEnter()
+     public void OnPointerEnterXR()
     {
         gazedAt = true;
         
+
     }
-     public void DeselectObject(GameObject other)
+
+    public void OnPointerExitXR()
+    {
+        gazedAt = false;
+        timer = 0;
+       
+
+    }
+    public void DeselectObject(GameObject other)
     {
         gazedAt = false;
         isSelected = false;
-        transform.position = new Vector3(other.gameObject.transform.position.x,transform.position.y+1f,other.gameObject.transform.position.z);
+        transform.position = new Vector3(other.gameObject.transform.position.x,transform.position.y+0.3f,other.gameObject.transform.position.z);
         transform.gameObject.AddComponent<Rigidbody>();
-        transform.gameObject.tag="inBox"; 
+        transform.gameObject.tag="inBox";
+        one.one = false;
+        timeController.timeGrabBool = false;
+
+        if (!one.panelTuto.activeSelf && !one.yaEntro)
+        {
+            one.panelTuto.SetActive(true);
+            one.yaEntro = true;
+           
+        }
+        
+        
     }
         
     private void OnTriggerEnter(Collider other)   
@@ -114,9 +141,13 @@ public class anchor : MonoBehaviour
         isSelected = false;
         transform.position = new Vector3(transform.gameObject.transform.position.x,transform.position.y,transform.gameObject.transform.position.z);
         transform.gameObject.AddComponent<Rigidbody>();
-        transform.gameObject.tag="Interactable"; 
+        transform.gameObject.tag="Interactable";
+        one.one = false;
+        timeController.timeGrabBool = false;
+
 
     }
+    
 
 
 }
