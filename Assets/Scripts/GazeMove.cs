@@ -47,30 +47,39 @@ public class GazeMove : MonoBehaviour {
         
         if (Physics.Raycast(transform.position, transform.forward, out hit, maxDistance))
         {
-
-            select(hit);
-            
-            if (selectedObject!=null)
-            { timer = 0;
-                
-                
-                if (selectedObject.CompareTag("inBox"))
-                {
-                   // Debug.Log(selectedObject.gameObject.name);
-                    if (!parts.Contains(selectedObject))
-                    {
-                        parts.Add(selectedObject);
-                    }
-                    
-                    selectedObject = null;
-                }
-               
-                
-            }
-            else 
+            try
             {
                 select(hit);
+
+                if (selectedObject != null)
+                {
+                    timer = 0;
+
+
+                    if (selectedObject.CompareTag("inBox"))
+                    {
+                        // Debug.Log(selectedObject.gameObject.name);
+                        if (!parts.Contains(selectedObject))
+                        {
+                            parts.Add(selectedObject);
+                        }
+
+                        selectedObject = null;
+                    }
+
+
+                }
+                else
+                {
+                    select(hit);
+                }
             }
+            catch (System.Exception)
+            {
+
+                
+            }
+           
            
         
             if (hit.collider.CompareTag("table"))
@@ -117,7 +126,7 @@ public class GazeMove : MonoBehaviour {
                     }
                 
             }
-           
+          
         }
         else
         {
@@ -138,6 +147,7 @@ public class GazeMove : MonoBehaviour {
     {
         if (hit.collider.CompareTag("Interactable"))
         {
+            anim.grab();
 
             timer += Time.deltaTime;
             if (timer >= gazeTime.timeForSelection)

@@ -3,7 +3,42 @@ guid: 04f0bd33df2356641816064c57bfa990
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SKIN.001
+    second: {fileID: 2100000, guid: 4d7c1be173f6c1f429a9d020f3ae9e46, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cs_buttons.002
+    second: {fileID: 2100000, guid: 74b8fb9a11660054b8ad4f147a3fe428, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cs_solid_black.002
+    second: {fileID: 2100000, guid: fd6720bc267277d448bfcbbc4349003e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cs_solid_blue.002
+    second: {fileID: 2100000, guid: a137932f97fc85942af80de7a1a7532e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cs_solid_green.002
+    second: {fileID: 2100000, guid: d7526047522384f45b098262fbe384aa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cs_solid_grey.002
+    second: {fileID: 2100000, guid: 16e0a92a07ad69448b74dc46baacd292, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cs_solid_red.002
+    second: {fileID: 2100000, guid: 75b364939bc7b6f41939e00d9161f74d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

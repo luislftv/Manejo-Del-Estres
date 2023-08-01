@@ -11,11 +11,13 @@ public class TimeController : MonoBehaviour
     [HideInInspector]public bool left;
     [SerializeField] float timeLose;
     [SerializeField] TextMeshProUGUI timeTxt;
+    [SerializeField] GameObject messeageTxt;
     // Start is called before the first frame update
     void Start()
     {
         timeTxt.enabled=false;
-        timeTxt.text="00";   
+        timeTxt.text="00";
+        messeageTxt.SetActive(false);
     }
 
     // Update is called once per frame
@@ -24,7 +26,7 @@ public class TimeController : MonoBehaviour
         
         if(timeGrabBool)
         {   timeTxt.enabled=true;
-
+            messeageTxt.SetActive(false);
             timeGrab +=Time.deltaTime;
             timeTxt.text=timeGrab.ToString("00");
             if(timeGrab>=timeLose)
@@ -32,7 +34,8 @@ public class TimeController : MonoBehaviour
                 left=true;
                 timeGrabBool=false;
                 timeTxt.enabled=false;
-                timeGrab=0;
+                messeageTxt.SetActive(true);
+                timeGrab =0;
             }
             
         }
@@ -40,6 +43,7 @@ public class TimeController : MonoBehaviour
         {
             timeGrab = 0;
             timeTxt.enabled = false;
+            
 
         }
     }

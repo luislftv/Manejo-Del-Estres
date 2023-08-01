@@ -110,7 +110,7 @@ public class anchor : MonoBehaviour
     {
         gazedAt = false;
         isSelected = false;
-        transform.position = new Vector3(other.gameObject.transform.position.x,transform.position.y+0.3f,other.gameObject.transform.position.z);
+        transform.position = new Vector3(other.gameObject.transform.position.x+Random.Range(-0.2f,0.2f),transform.position.y+0.3f,other.gameObject.transform.position.z);
         transform.gameObject.AddComponent<Rigidbody>();
         transform.gameObject.tag="inBox";
         one.one = false;
