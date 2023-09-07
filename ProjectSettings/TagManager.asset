@@ -11,6 +11,9 @@ TagManager:
   - fullDog
   - fullCrab
   - button
+  - Selected
+  - banda
+  - toy
   layers:
   - Default
   - TransparentFX
@@ -20,9 +23,9 @@ TagManager:
   - UI
   - dog
   - crab
-  - 
-  - 
-  - 
+  - dino
+  - pulpo
+  - carro
   - 
   - 
   - 

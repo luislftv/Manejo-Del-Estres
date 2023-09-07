@@ -10,9 +10,12 @@ public class animationController : MonoBehaviour
  {
     animator.Play("metarig|metarigAction");
  }
+ public void drop()
+ {
+     animator.Play("drop");
+ }
  public void fix()
  {
-    animator.Play("fix");
-    
+     animator.Play("fix");
  }
 }

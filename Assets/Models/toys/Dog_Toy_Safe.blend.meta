@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: d2052e1975e432d4ba4dbffb1b4f8be1
+guid: 597d36723e7f0ba4fb6ea6a422250f56
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material-Gris
-    second: {fileID: 2100000, guid: 844b935489d0c8945b22bc9b49e72279, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

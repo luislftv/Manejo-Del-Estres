@@ -13,7 +13,8 @@ public class anchor : MonoBehaviour
     [SerializeField] private GazeManager gazeManager;
     [SerializeField] private TimeController timeController;
     [SerializeField] private GazeMove one;
-    
+    [SerializeField] private GameObject ubi;
+
 
 
 
@@ -23,7 +24,7 @@ public class anchor : MonoBehaviour
         {
             
             timer += Time.deltaTime;
-
+            
             // Comprobar si el tiempo requerido de mirada ha sido alcanzado
             if (timer >= gazeManager.timeForSelection)
             {
@@ -36,23 +37,27 @@ public class anchor : MonoBehaviour
         }
         if (isSelected&&!one.one)
         {
-             //this.transform.LookAt(cameraTransform, Vector3.up);
+            //this.transform.LookAt(cameraTransform, Vector3.up);
             // Calcula la dirección desde el objeto actual hacia el objeto objetivo
-            Vector3 direction = Camera.main.transform.position - transform.position;
+            /*Vector3 direction = Camera.main.transform.position - transform.position;
 
             // Calcula el ángulo en radianes en base a la dirección
             float angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
 
             // Crea una rotación en el eje Y usando el ángulo calculado
-            Quaternion rotation = Quaternion.Euler(0f, angle, 0f);
+            Quaternion rotation = Quaternion.Euler(0f, angle, 0f);*/
+
+
+            transform.position = ubi.transform.position;
+            transform.rotation = ubi.transform.rotation;
 
             // Aplica la rotación al objeto actual
-            transform.rotation = rotation;
+            // transform.rotation = rotation;
         }
         
         if (!timeController.timeGrabBool&&timeController.left)
         {
-            if(transform.CompareTag("Untagged"))
+            if(transform.CompareTag("Selected"))
             {
                 leftObject();
             }
@@ -70,14 +75,14 @@ public class anchor : MonoBehaviour
         {
             //this.transform.LookAt(cameraTransform);
             // Obtener la posición del centro de la cámara
-            Vector3 cameraCenter =  new Vector3(Camera.main.transform.position.x,Camera.main.transform.position.y-0.15f,Camera.main.transform.position.z) + Camera.main.transform.forward * followRadius;
+          /*  Vector3 cameraCenter =  new Vector3(Camera.main.transform.position.x,Camera.main.transform.position.y-0.15f,Camera.main.transform.position.z) + Camera.main.transform.forward * followRadius;
 
             // Calcular la dirección del movimiento
             Vector3 direction = cameraCenter - transform.position;
            // direction.y= 0f; // Opcionalmente, puedes bloquear el movimiento en el eje Y para que el objeto no suba o baje.
 
             // Mover el objeto en la dirección calculada
-            transform.position += direction * followSpeed * Time.deltaTime;
+            transform.position += direction * followSpeed * Time.deltaTime;*/
             
         }
         
@@ -86,10 +91,10 @@ public class anchor : MonoBehaviour
     public void OnObjectSelected()
     {
         // Aquí puedes agregar cualquier código adicional que desees ejecutar cuando el objeto es seleccionado
-        Debug.Log("Objeto seleccionado");
+       
         Destroy(transform.gameObject.GetComponent<Rigidbody>());
         timeController.timeGrabBool=true;
-        transform.gameObject.tag="Untagged";
+        transform.gameObject.tag="Selected";
         
     }
      public void OnPointerEnterXR()
@@ -128,7 +133,7 @@ public class anchor : MonoBehaviour
         
     private void OnTriggerEnter(Collider other)   
     {
-        if( other.gameObject.CompareTag("Container")&& transform.gameObject.CompareTag("Untagged"))
+        if( other.gameObject.CompareTag("Container")&& transform.gameObject.CompareTag("Selected"))
         {
             DeselectObject(other.gameObject);
             //meta = true;
@@ -141,9 +146,10 @@ public class anchor : MonoBehaviour
         isSelected = false;
         transform.position = new Vector3(transform.gameObject.transform.position.x,transform.position.y,transform.gameObject.transform.position.z);
         transform.gameObject.AddComponent<Rigidbody>();
+        timeController.timeGrabBool = false;
         transform.gameObject.tag="Interactable";
         one.one = false;
-        timeController.timeGrabBool = false;
+        
 
 
     }
