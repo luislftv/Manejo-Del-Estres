@@ -10,6 +10,7 @@ public class Stats : MonoBehaviour
     [SerializeField] TextMeshProUGUI momento1;
     [SerializeField] TextMeshProUGUI momento2;
     [SerializeField] TextMeshProUGUI momento3;
+    [SerializeField] GameObject creditos;
 
     private void Awake()
     {
@@ -19,6 +20,6 @@ public class Stats : MonoBehaviour
     }
     public void OnPointerClickXR()
     {
-        SceneManager.LoadScene("Momento 1");
+        gameObject.SetActive(true);
     }
 }

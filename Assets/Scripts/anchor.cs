@@ -14,45 +14,37 @@ public class anchor : MonoBehaviour
     [SerializeField] private TimeController timeController;
     [SerializeField] private GazeMove one;
     [SerializeField] private GameObject ubi;
+    [SerializeField] private Transform antParent;
 
 
-
-
+    private void Start()
+    {
+        antParent = transform.parent;
+    }
     private void Update()
     {
         if (gazedAt && !isSelected)
         {
-            
+
             timer += Time.deltaTime;
-            
+
             // Comprobar si el tiempo requerido de mirada ha sido alcanzado
             if (timer >= gazeManager.timeForSelection)
             {
-               
+
                 // Seleccionar el objeto
                 isSelected = true;
-               
+
                 OnObjectSelected();
             }
         }
-        if (isSelected&&!one.one)
+        if (isSelected && !one.one)
         {
-            //this.transform.LookAt(cameraTransform, Vector3.up);
-            // Calcula la dirección desde el objeto actual hacia el objeto objetivo
-            /*Vector3 direction = Camera.main.transform.position - transform.position;
-
-            // Calcula el ángulo en radianes en base a la dirección
-            float angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-
-            // Crea una rotación en el eje Y usando el ángulo calculado
-            Quaternion rotation = Quaternion.Euler(0f, angle, 0f);*/
-
-
+            
+            
+            transform.parent = ubi.transform;
             transform.position = ubi.transform.position;
-            transform.rotation = ubi.transform.rotation;
-
-            // Aplica la rotación al objeto actual
-            // transform.rotation = rotation;
+           
         }
         
         if (!timeController.timeGrabBool&&timeController.left)
@@ -60,6 +52,7 @@ public class anchor : MonoBehaviour
             if(transform.CompareTag("Selected"))
             {
                 leftObject();
+
             }
             
         }
@@ -113,6 +106,7 @@ public class anchor : MonoBehaviour
     }
     public void DeselectObject(GameObject other)
     {
+        transform.parent = antParent;
         gazedAt = false;
         isSelected = false;
         transform.position = new Vector3(other.gameObject.transform.position.x+Random.Range(-0.2f,0.2f),transform.position.y+0.3f,other.gameObject.transform.position.z);
@@ -142,6 +136,7 @@ public class anchor : MonoBehaviour
     }
     void leftObject()
     {
+        transform.parent = antParent;
         gazedAt = false;
         isSelected = false;
         transform.position = new Vector3(transform.gameObject.transform.position.x,transform.position.y,transform.gameObject.transform.position.z);

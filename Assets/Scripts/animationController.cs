@@ -8,14 +8,22 @@ public class animationController : MonoBehaviour
 
  public void grab()
  {
-    animator.Play("metarig|metarigAction");
+    animator.Play("Armature|Hand_Select");
  }
- public void drop()
+ public void select()
  {
-     animator.Play("drop");
+     animator.Play("Armature|Hand_Object");
  }
- public void fix()
+ public void idlobject()
  {
-     animator.Play("fix");
+        animator.Play("Armature|Hand_Object_Idlev1");
  }
+    public void drop()
+    {
+        animator.Play("Armature|Hand_Object_Drop");
+    }
+    public void fix()
+    {
+        animator.Play("Armature|Hand_Build");
+    }
 }
