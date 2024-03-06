@@ -9,11 +9,15 @@ public class panel : MonoBehaviour
     // Start is called before the first frame update
     public void OnPointerEnterXR()
     {
-        if (!panelTuto.activeSelf && !yaEntro)
+        if(panelTuto)
         {
-            panelTuto.SetActive(true);
-            yaEntro = true;
+            if (!panelTuto.activeSelf && !yaEntro)
+            {
+                
+                yaEntro = true;
+            }
         }
+        
 
 
     }

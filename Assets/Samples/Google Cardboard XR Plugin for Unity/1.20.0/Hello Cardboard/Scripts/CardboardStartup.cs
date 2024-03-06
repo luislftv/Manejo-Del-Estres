@@ -36,10 +36,7 @@ public class CardboardStartup : MonoBehaviour
         Screen.brightness = 1.0f;
 
         // Checks if the device parameters are stored and scans them if not.
-        if (!Api.HasDeviceParams())
-        {
-            Api.ScanDeviceParams();
-        }
+       
     }
 
     /// <summary>
@@ -47,28 +44,13 @@ public class CardboardStartup : MonoBehaviour
     /// </summary>
     public void Update()
     {
-        if (Api.IsGearButtonPressed)
-        {
-            Api.ScanDeviceParams();
-        }
+      
 
         if (Api.IsCloseButtonPressed)
         {
             Application.Quit();
         }
 
-        if (Api.IsTriggerHeldPressed)
-        {
-            Api.Recenter();
-        }
-
-        if (Api.HasNewDeviceParams())
-        {
-            Api.ReloadDeviceParams();
-        }
-
-        #if !UNITY_EDITOR
-        Api.UpdateScreenParams();
-        #endif
+      
     }
 }

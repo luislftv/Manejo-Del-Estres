@@ -65,13 +65,14 @@ public class GazeMove : MonoBehaviour
                     //anim.grab();
 
                     timer += Time.deltaTime;
-                    if (timer >= gazeTime.timeForSelection)
+                    if (timer >= gazeTime.timeForSelection-0.1f)
                     {
 
                         selectedObject = hit.transform.gameObject;
 
                         //Debug.Log("puto");
                         anim.idlobject();
+                        timer=0;
                     }
 
 

@@ -57,6 +57,14 @@ public class anchor : MonoBehaviour
             
         }
 
+        if (transform.CompareTag("Interactable")&&transform.gameObject.GetComponent<Rigidbody>())
+        {
+            transform.gameObject.GetComponent<Rigidbody>().constraints=RigidbodyConstraints.None;
+            transform.gameObject.GetComponent<BoxCollider>().enabled=true;   
+            
+        }
+
+
         
         
         
@@ -111,16 +119,22 @@ public class anchor : MonoBehaviour
         isSelected = false;
         transform.position = new Vector3(other.gameObject.transform.position.x+Random.Range(-0.2f,0.2f),transform.position.y+0.3f,other.gameObject.transform.position.z);
         transform.gameObject.AddComponent<Rigidbody>();
+        StartCoroutine(temp());
         transform.gameObject.tag="inBox";
+        
         one.one = false;
         timeController.timeGrabBool = false;
 
-        if (!one.panelTuto.activeSelf && !one.yaEntro)
+        if(one.panelTuto)
         {
-            one.panelTuto.SetActive(true);
-            one.yaEntro = true;
-           
+             if (!one.panelTuto.activeSelf && !one.yaEntro)
+            {
+                one.panelTuto.SetActive(true);
+                one.yaEntro = true;
+            
+            }
         }
+       
         
         
     }
@@ -148,6 +162,13 @@ public class anchor : MonoBehaviour
 
 
     }
+
+    IEnumerator temp() {    
+        yield return new WaitForSeconds(1f);
+        transform.gameObject.GetComponent<Rigidbody>().constraints=RigidbodyConstraints.FreezeAll;
+        transform.gameObject.GetComponent<BoxCollider>().enabled=false;   
+}
+
     
 
 

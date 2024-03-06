@@ -24,11 +24,11 @@ public class GazeManager : MonoBehaviour
     [SerializeField] private GameObject gazeBarCanvas;
     [SerializeField] Image fillIndicator;
     [Tooltip("Time in seg")]
-    public float timeForSelection =2.5f;
+    public float timeForSelection;
 
     private float timeCounter;
     private float timeProggres;
-    private bool runTimer;
+    public bool runTimer;
     void Start()
     {
         gazeBarCanvas.SetActive(false);
@@ -38,6 +38,7 @@ public class GazeManager : MonoBehaviour
 
     public void Update()
     {
+       
         if (runTimer)
         {
             timeProggres += Time.deltaTime;
